@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CubeMultiplier : MonoBehaviour
 {
     [SerializeField] private CameraRaycast _cameraRaycast;
     [SerializeField] private UserUtils _userUtils;
-    [SerializeField] private Material _cubesMaterial;
     [SerializeField] private float _multiplySuccessChance = 100;
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {            
-            if (_cameraRaycast.GetColliderInfo().collider.gameObject == gameObject)
+        {
+            _cameraRaycast.FireRaycast(out RaycastHit hitInfo);
+
+            if (hitInfo.collider != null) 
             {
-                MultiplyCube();
-            }
+                if (hitInfo.collider.gameObject == gameObject)
+                {
+                    MultiplyCube();
+                }
+            }            
         }
     }
 
@@ -38,21 +39,19 @@ public class CubeMultiplier : MonoBehaviour
             float numberOfClones = _userUtils.GetRandomNumber(minClones, maxClones);
 
             for (int i = 0; i < numberOfClones; i++)
-            {
-                PaintCube();
+            {                
                 GameObject newCube = Instantiate(gameObject);
-                Explode(newCube);
+                PaintCube(newCube);
+                Explode(newCube);                
             }
         }
 
         Destroy(gameObject);
     }
 
-    private void PaintCube()
+    private void PaintCube(GameObject newCube)
     {
-        Color randomColor = new Color(Random.value, Random.value, Random.value);
-
-        _cubesMaterial.color = randomColor;
+        newCube.GetComponent<Renderer>().material.color = new Color(Random.value, Random.value, Random.value);
     }
 
     private void Explode(GameObject newCube) 
