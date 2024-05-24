@@ -1080,8 +1080,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cameraRaycast: {fileID: 4027748902624388475}
   _userUtils: {fileID: 1479271505}
-  _cubesMaterial: {fileID: 2100000, guid: 7e61ed704838d354f96a6fbcbb929c4c, type: 2}
+  _cube: {fileID: 5223659250527290191}
   _multiplySuccessChance: 100
+  _minClones: 2
+  _maxClones: 7
+  _scaleDenominator: 2
+  _minPercent: 0
+  _maxPercent: 100
+  _multiplyChanceDenominator: 2
 --- !u!54 &5223659250527290191
 Rigidbody:
   m_ObjectHideFlags: 0
