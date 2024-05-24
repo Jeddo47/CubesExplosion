@@ -2,10 +2,25 @@ using UnityEngine;
 
 public class CameraRaycast : MonoBehaviour
 {
-    public void FireRaycast(out RaycastHit hitInfo)
-    {
-        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+    [SerializeField] private Spawner _spawner;
+    private Camera _camera;
 
-        Physics.Raycast(cameraRay, out hitInfo);
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (Physics.Raycast(_camera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
+            {
+                if (hitInfo.collider.TryGetComponent(out CubeStats cubeStats)) 
+                {
+                    _spawner.MultiplyCubes(hitInfo, cubeStats);                    
+                }
+            }
+        }
     }
 }
