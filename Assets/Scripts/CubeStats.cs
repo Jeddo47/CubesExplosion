@@ -6,6 +6,8 @@ public class CubeStats : MonoBehaviour
     [SerializeField] private float _minPercent = 0;
     [SerializeField] private float _maxPercent = 100;
     [SerializeField] private float _multiplyChanceDenominator = 2;
+    [SerializeField] private float _explosionPotential = 1;
+    [SerializeField] private float _explosionPotentialMultiplier = 2;
 
     public bool IsAbleToMultiply()
     {
@@ -15,5 +17,15 @@ public class CubeStats : MonoBehaviour
     public void DecreaseMultiplyChance()
     {
         _multiplySuccessChance /= _multiplyChanceDenominator;
+    }
+
+    public void IncreaseExplosionPotential() 
+    {
+        _explosionPotential *= _explosionPotentialMultiplier;    
+    }
+
+    public float GetExplosionPotential() 
+    {
+        return _explosionPotential;            
     }
 }

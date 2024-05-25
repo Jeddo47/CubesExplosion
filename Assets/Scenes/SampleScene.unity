@@ -1039,6 +1039,8 @@ MonoBehaviour:
   _minPercent: 0
   _maxPercent: 100
   _multiplyChanceDenominator: 2
+  _explosionPotential: 1
+  _explosionPotentialMultiplier: 2
 --- !u!54 &5223659250527290191
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1193,6 +1195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d9d590266e5f34c9aeea532acf114a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _explosionForceOnSpawn: 20
+  _explosionRadiusOnSpawn: 10
+  _explosionForceOnDestroy: 10
+  _explosionRadiusOnDestroy: 10
+  _upwardsModifier: 1
 --- !u!114 &7919256330657109085
 MonoBehaviour:
   m_ObjectHideFlags: 0

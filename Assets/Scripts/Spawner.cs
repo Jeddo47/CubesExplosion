@@ -15,14 +15,19 @@ public class Spawner : MonoBehaviour
             float numberOfClones = Random.Range(_minClones, _maxClones);
 
             cubeStats.DecreaseMultiplyChance();
+            cubeStats.IncreaseExplosionPotential();
 
             for (int i = 0; i < numberOfClones; i++)
-            {                
+            {
                 Rigidbody newCube = Instantiate(hitInfo.collider.attachedRigidbody);
                 newCube.transform.localScale /= _scaleDenominator;
                 _painter.PaintCube(newCube);
-                _exploder.Explode(newCube);
+                _exploder.ExplodeOnSpawn(newCube);
             }
+        }
+        else 
+        {
+            _exploder.ExplodeOnDestroy(hitInfo, cubeStats);                    
         }
 
         Destroy(hitInfo.collider.gameObject);
