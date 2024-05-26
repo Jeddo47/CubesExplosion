@@ -16,7 +16,7 @@ public class Exploder : MonoBehaviour
 
     public void ExplodeOnDestroy(RaycastHit hitInfo, CubeStats cubeStats)
     {
-        float explosionPotential = cubeStats.GetExplosionPotential();
+        float explosionPotential = cubeStats.ExplosionPotential;
 
         foreach (var cubeToExplode in GetCubesToExplode(hitInfo))
         {

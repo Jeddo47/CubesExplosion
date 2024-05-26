@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Renderer))]
+
 public class CubeStats : MonoBehaviour
 {    
     [SerializeField] private float _multiplySuccessChance = 100;
@@ -8,6 +10,8 @@ public class CubeStats : MonoBehaviour
     [SerializeField] private float _multiplyChanceDenominator = 2;
     [SerializeField] private float _explosionPotential = 1;
     [SerializeField] private float _explosionPotentialMultiplier = 2;
+
+    public float ExplosionPotential { get; private set; }
 
     public bool IsAbleToMultiply()
     {
@@ -21,11 +25,12 @@ public class CubeStats : MonoBehaviour
 
     public void IncreaseExplosionPotential() 
     {
-        _explosionPotential *= _explosionPotentialMultiplier;    
+        _explosionPotential *= _explosionPotentialMultiplier;
+        ExplosionPotential = _explosionPotential;
     }
 
-    public float GetExplosionPotential() 
+    private void Awake()
     {
-        return _explosionPotential;            
+        ExplosionPotential = _explosionPotential;
     }
 }
